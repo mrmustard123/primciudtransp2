@@ -1,0 +1,8 @@
+20:57 30/04/2025 Hoy comenzaremos una nueva versión que diferirá substancialmente de la versión 1.
+Debido a las quejas de que la encuesta era muy complicada, quitaremos el login, quitaremos los datos personales, quitaremos las preguntas capciosas, quitaremos obviamente el Re-Captcha del login.
+
+El flujo será el siguiente: el usuário recibe un link de un formulário muy sencillo donde apenas pone su teléfono (de Bolivia) el código DDI (+591) lo añadirá el sistema de forma que solo se use teléfonos bolivianos.
+Con este número se enviará un mensaje a Whatsapp con otro link el cual registrará el número de celular si no existe o chequeará en la base de datos si ya está registrado dicho celular. Luego se procede a la votación.
+La votación tendrá una especie de blockchain interno entre los datos de votación donde cada voto estará "encadenado" al siguiente de modo que no se pueda alterar un voto pues se detectaría al sumar un número llamado hash.
+
+Si 2 usuarios desean hacer auditoría de la votación, tendrán un número de votación que al sumarlo o restarlo (siempre un número será menor y otro menor pues son secuenciales) dará la información de por quien votó.
