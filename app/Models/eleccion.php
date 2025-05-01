@@ -22,7 +22,7 @@ class eleccion extends Model
     public function candidatos()
     {
         return $this->belongsToMany(
-            Candidato::class, 
+            candidato::class, 
             'eleccion_candidato', 
             'id_eleccion', 
             'id_candidato'
@@ -31,7 +31,7 @@ class eleccion extends Model
     
     public function votaciones()
     {
-        return $this->hasMany(Votacion::class, 'id_eleccion', 'id_eleccion');
+        return $this->hasMany(votacion::class, 'id_eleccion', 'id_eleccion');
     }    
     
     #[ORM\Id]

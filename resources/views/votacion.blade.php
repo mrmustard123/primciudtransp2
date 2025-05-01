@@ -5,6 +5,7 @@
     <div class="max-w-3xl mx-auto">
         <!-- Título principal -->
         <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center">{{ $eleccion->nombre }}</h1>
+        <h3>(Se recomienda anotar la fecha y la hora de su voto para que Ud. lo audite en cualquier momento)</h3>
         
         <div class="bg-white rounded-lg shadow-md overflow-hidden">
             <!-- Header con notificaciones -->

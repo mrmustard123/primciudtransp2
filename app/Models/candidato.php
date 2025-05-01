@@ -22,7 +22,7 @@ class candidato extends Model
     public function elecciones()
     {
         return $this->belongsToMany(
-            Eleccion::class, 
+            eleccion::class, 
             'eleccion_candidato', 
             'id_candidato', 
             'id_eleccion'
@@ -31,7 +31,7 @@ class candidato extends Model
     
     public function votaciones()
     {
-        return $this->hasMany(Votacion::class, 'id_candidato', 'id_candidato');
+        return $this->hasMany(votacion::class, 'id_candidato', 'id_candidato');
     }    
     
     
@@ -63,13 +63,13 @@ class candidato extends Model
     #[ORM\JoinColumn(name: "id_partido", referencedColumnName: "id_partido", onDelete: "CASCADE", onUpdate: "CASCADE")]
     public function partido()
     {
-        return $this->belongsTo(Partido::class, 'id_partido', 'id_partido');
+        return $this->belongsTo(partido::class, 'id_partido', 'id_partido');
     }
          
 
     #[ORM\OneToMany(targetEntity: "App\\Models\\Resultado", mappedBy: "candidato")]
     public function resultados()
     {
-        return $this->hasMany(Resultado::class, 'id_candidato', 'id_candidato');
+        return $this->hasMany(resultado::class, 'id_candidato', 'id_candidato');
     }
 }

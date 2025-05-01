@@ -144,7 +144,7 @@ return [
     'starts_with' => 'El :attribute debe comenzar con uno de los siguientes: :values.',
     'string' => 'El :attribute debe ser una cadena.',
     'timezone' => 'El :attribute debe ser una zona horaria v�lida.',
-    'unique' => 'El :attribute ya ha sido tomado.',
+    'unique' => 'El atributo: :attribute ya ha sido tomado.',
     'uploaded' => 'El :attribute no se pudo subir.',
     'uppercase' => 'El :attribute debe estar en may�sculas.',
     'url' => 'El :attribute debe ser una URL v�lida.',

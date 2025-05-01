@@ -4,11 +4,11 @@
 <div class="flex justify-center items-center min-h-screen bg-gray-100">
     <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
         <h2 class="text-2xl font-semibold text-center mb-6">Iniciar sesión</h2>
-        <form action="{{ route('login') }}" method="POST">
+        <form action="{{ route('encuesta') }}" method="POST">
             @csrf
             
             <div class="mb-4">
-                <label for="username" class="block text-gray-700">Nombre de usuario</label>
+                <label for="username" class="block text-gray-700">Apodo</label>
                 <input type="text" name="username" id="username" required
                     class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     value="{{ old('username') }}">
@@ -26,8 +26,8 @@
                 @enderror
             </div>
             
-            <!-- Re-Captcha -->
-            <!--div class="mb-4 flex justify-center">                
+            <!-- Re-Captcha >
+            <div class="mb-4 flex justify-center">                
                 {!! NoCaptcha::display() !!}
                 @error('g-recaptcha-response')
                     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
@@ -39,9 +39,9 @@
                 class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition">Ingresar</button>
         </form>
         
-        <p class="text-center mt-4 text-gray-600">
-            ¿No tiene cuenta? <a href="{{ route('register') }}" class="text-blue-500 hover:underline">Regístrese aquí</a>
-        </p>
+        <h2 class="text-2xl font-semibold text-center mb-6">
+                ¿No tiene cuenta? <a href="{{ route('register') }}" class="text-blue-500 hover:underline">Regístrese aquí</a>
+        </h2>
     </div>
 </div>
 @endsection

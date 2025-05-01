@@ -6,7 +6,7 @@
     <h2 class="text-xl font-bold mb-4 text-center">Bienvenido a las encuestas de Transparencia</h2>
     <p class="text-sm text-gray-600 mb-6 text-center">
         Estas encuestas son serias, por lo que necesitamos algunos datos de su parte para evitar fraudes y "guerreros digitales", además de 
-        verificar que Ud. es de Bolivia y mayor de edad. El código fuente de esta encuesta es abierto y también podrá Ud. mismo verificar su voto en cualquier momento.
+        verificar que Ud. es de Bolivia y mayor de edad. Podrá Ud. mismo verificar su voto en cualquier momento.
     </p>
     
     <form action="{{ route('register') }}" method="POST" class="space-y-4">
@@ -71,14 +71,14 @@
         </div>
         
         <div>
-            <label for="ci" class="block text-gray-700 font-semibold">Cédula de identidad (no coloque LP, SC, etc.)</label>
-            <input type="text" name="ci" id="ci" required 
+            <label for="ci" class="block text-gray-700 font-semibold">Cédula de identidad (Opcional)</label>
+            <input type="text" name="ci" id="ci" 
                 class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-200">
         </div>
         
         <div>
             <label for="lugar_emision" class="block text-gray-700 font-semibold">Lugar de emisión</label>
-            <select name="lugar_emision" id="lugar_emision" required 
+            <select name="lugar_emision" id="lugar_emision"  
                 class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-200">
                 <option value="" disabled selected>Seleccione el lugar de emisión</option>
                 <option value="SC">Santa Cruz</option>
@@ -143,6 +143,7 @@
                 document.getElementById('location').value = position.coords.latitude + ',' + position.coords.longitude;
             });
         }
+        
 
         // Manejo del modal
         const modal = document.getElementById('modal');

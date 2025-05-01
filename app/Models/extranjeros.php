@@ -2,18 +2,15 @@
 
 namespace App\Models;
 
-
+use Doctrine\ORM\Mapping as ORM;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Doctrine\ORM\Mapping as ORM;
 
 use DateTime;
 
-
-
- #[ORM\Entity]
- #[ORM\Table(name: "extranjeros")]
-class Extranjeros extends Model
+#[ORM\Entity]
+#[ORM\Table(name: "extranjeros")]
+class extranjeros extends Model
 { 
     use HasFactory;
 

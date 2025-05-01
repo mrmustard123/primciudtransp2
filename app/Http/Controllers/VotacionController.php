@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Eleccion;
-use App\Models\Candidato;
-use App\Models\Votacion;
+use App\Models\eleccion;
+use App\Models\candidato;
+use App\Models\votacion;
 use App\Models\resultado;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -22,7 +22,7 @@ class VotacionController extends Controller
     public function index($id_eleccion)
     {
         // Obtener la elección
-        $eleccion = Eleccion::findOrFail($id_eleccion);
+        $eleccion = eleccion::findOrFail($id_eleccion);
         
         // Obtener el usuario actual
         $user = Auth::user();
@@ -37,10 +37,11 @@ class VotacionController extends Controller
                             ->first();
         
         // Obtener todos los candidatos para esta elección
-        $candidatos = Candidato::whereHas('elecciones', function($query) use ($id_eleccion) {
+        $candidatos = candidato::whereHas('elecciones', function($query) use ($id_eleccion) {
                             $query->where('eleccion.id_eleccion', $id_eleccion);
                         })
                         ->with('partido')
+                        ->orderBy('nombres', 'asc')
                         ->get();
         
         // Determinar el estado de la votación
@@ -85,7 +86,7 @@ class VotacionController extends Controller
         }
         
         // Verificar si la elección está activa
-        $eleccion = Eleccion::findOrFail($id_eleccion);
+        $eleccion = eleccion::findOrFail($id_eleccion);
         $today = Carbon::now('America/La_Paz')->toDateString();
         if ($today < $eleccion->fecha_ini || $today > $eleccion->fecha_fin) {
             return redirect()->route('votar', ['id_eleccion' => $id_eleccion])

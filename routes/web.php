@@ -19,14 +19,19 @@ use App\Http\Controllers\VotacionController;
 |
 */
 
-/**ESTO QUITAR CUANDO SE PONGA EN PRODUCCION!!!***/
+/**ESTO QUITAR CUANDO SE PONGA EN PRODUCCION!!!***
 Route::get('/', function () {
+    return redirect('/login');
+});
+
+
+Route::get('/encuesta', function () {
     return redirect('/login');
 });
 /*************************************************/
 
-Route::get('/encuesta', function () {
-    return redirect('/login');
+Route::get('/', function () {
+    return redirect('/encuesta');
 });
 
 require __DIR__.'/auth.php';
@@ -34,11 +39,14 @@ require __DIR__.'/auth.php';
 
 
 
-Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
+//Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
+Route::get('/encuesta', [AuthController::class, 'showLogin'])->name('encuesta');
+
+
 Route::get('/registro', [AuthController::class, 'showRegister'])->name('register');
 //Route::post('/registro', [AuthController::class, 'register']);
 Route::post('/registro', [App\Http\Controllers\Api\RegisterController::class, 'register']);
-Route::post('/login', [AuthController::class, 'login']);
+Route::post('/encuesta', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');

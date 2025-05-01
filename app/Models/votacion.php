@@ -30,7 +30,7 @@ class votacion extends Model
    
     public function eleccion()
     {
-        return $this->belongsTo(Eleccion::class, 'id_eleccion', 'id_eleccion');
+        return $this->belongsTo(eleccion::class, 'id_eleccion', 'id_eleccion');
     }
     
     public function user()
@@ -40,7 +40,7 @@ class votacion extends Model
     
     public function candidato()
     {
-        return $this->belongsTo(Candidato::class, 'id_candidato', 'id_candidato');
+        return $this->belongsTo(candidato::class, 'id_candidato', 'id_candidato');
     }
 
         
@@ -56,7 +56,7 @@ class votacion extends Model
     #[ORM\Id]
     #[ORM\ManyToOne(targetEntity: "Eleccion")]
     #[ORM\JoinColumn(name: "id_eleccion", referencedColumnName: "id_eleccion", onUpdate: "CASCADE")]
-    private Eleccion $eleccion;
+    private eleccion $eleccion;
 
     #[ORM\Id]
     #[ORM\ManyToOne(targetEntity: "User")]
@@ -65,7 +65,7 @@ class votacion extends Model
 
     #[ORM\ManyToOne(targetEntity: "Candidato")]
     #[ORM\JoinColumn(name: "id_candidato", referencedColumnName: "id_candidato", nullable: true, onUpdate: "CASCADE")]
-    private ?Candidato $candidato;
+    private ?candidato $candidato;
     
     #[ORM\Column(type: "string", length: 255, nullable: true)]
     private $ipfs_hash;
@@ -116,12 +116,12 @@ class votacion extends Model
         return $this;
     }
 
-    public function getEleccion(): Eleccion
+    public function getEleccion(): eleccion
     {
         return $this->eleccion;
     }
 
-    public function setEleccion(Eleccion $eleccion): self
+    public function setEleccion(eleccion $eleccion): self
     {
         $this->eleccion = $eleccion;
         return $this;
@@ -138,12 +138,12 @@ class votacion extends Model
         return $this;
     }
 
-    public function getCandidato(): ?Candidato
+    public function getCandidato(): ?candidato
     {
         return $this->candidato;
     }
 
-    public function setCandidato(?Candidato $candidato): self
+    public function setCandidato(?candidato $candidato): self
     {
         $this->candidato = $candidato;
         return $this;

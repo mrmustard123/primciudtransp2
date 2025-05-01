@@ -55,9 +55,9 @@ class User extends Authenticatable
     private ?DateTime $updated_at;    
     
 
-    #[ORM\ManyToOne(targetEntity: Partido::class)]
+    #[ORM\ManyToOne(targetEntity: partido::class)]
     #[ORM\JoinColumn(name: "id_partido", referencedColumnName: "id_partido", nullable: true)]
-    private ?Partido $partido;
+    private ?partido $partido;
     
  
 
@@ -191,12 +191,12 @@ class User extends Authenticatable
     
     
 
-    public function getPartido(): ?Partido
+    public function getPartido(): ?partido
     {
         return $this->partido;
     }
 
-    public function setPartido(?Partido $partido): void
+    public function setPartido(?partido $partido): void
     {
         $this->partido = $partido;
     }

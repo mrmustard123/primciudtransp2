@@ -1,6 +1,6 @@
 <?php
 //namespace app\Http\Controllers\Api; //Asi cumple con el standard psr-4, que se yo...
-namespace App\Http\Controllers\Api;
+namespace app\Http\Controllers\Api;
 
 header('Content-Type: text/html; charset=UTF-8');
 use App\Http\Controllers\Controller;
@@ -11,8 +11,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 
 use App\Models\User;
-use App\Models\Pregunta;
-use App\Models\Extranjeros;
+use App\Models\pregunta;
+use App\Models\extranjeros;
 
 
 
@@ -33,8 +33,8 @@ class RegisterController extends Controller
             'password' => 'required|string|min:6|confirmed',
             'fullname' => 'required|string|max:255',
             'fecha_nac' => 'required|date_format:Y-m-d',
-            'ci' => 'required|string|max:50|unique:App\Models\User,cedula',
-            'lugar_emision' => 'required|string|max:2',
+            'ci' => 'string|max:50|unique:App\Models\User,cedula',
+            'lugar_emision' => 'string|max:2',
             'pregunta_1' => 'required|string',
             'pregunta_2' => 'required|string',
             'pregunta_3' => 'required|string',
@@ -45,65 +45,72 @@ class RegisterController extends Controller
         ]);
         
         // Validar ubicación
-        if (!empty($data['location'])) {
+        if ( (!empty($data['location'])) and (!is_null($data['location'])) ) 
+        {
             $coordenadas = explode(',', $data['location']); //ej. -17.7834,-63.1822
             $latitude=$coordenadas[0];
             $longitude=$coordenadas[1];
             $isInBolivia = $this->validateLocationWithinBolivia($latitude,$longitude);
-            if (!$isInBolivia) {
+            if (!$isInBolivia) 
+            {
                                 
                 
                 $pais = $data['location'];
 
                 // Buscar si ya existe el país en la tabla Extranjeros                
                              
-                /*Forma Doctrine 3*/
-                $extranjero = $this->entityManager->getRepository('App\Models\Extranjeros')->findOneBy(array('pais' => $pais));
-                
-                /*forma Eloquent
-                $extranjero = Extranjeros::where('pais', $pais)->first(); */
+                /*Forma Doctrine 3
+                $extranjero = $this->entityManager->getRepository(extranjeros::class)->findOneBy(array('pais' => $pais));
+                */
+                /*forma Eloquent */
+                $extranjero = extranjeros::where('pais', $pais)->first(); 
                                                 
                 
-                if (is_null($extranjero)) {
+                if(is_null($extranjero)) {
                    // Si no existe, crear un nuevo registro
-                    /**Forma Doctrine 3 **/
+                    /**Forma Doctrine 3 
                     $fecha_actual = now();
-                    $extranjero = new Extranjeros();
+                    $extranjero = new extranjeros();
                     $extranjero->setPais($pais);
                     $extranjero->setVotos(1);
                     $extranjero->setCreatedAtCustom($fecha_actual);
                     $extranjero->setUpdatedAtCustom($fecha_actual);
                     $this->entityManager->persist($extranjero);
                     $this->entityManager->flush();                     
-
+                    */
                     
-                    /**Forma Eloquent**
+                    /**Forma Eloquent***/    
                     
-                    Extranjeros::create([
+                    extranjeros::create([
+                        'fecha_actual' => now(),
                         'pais' => $pais,
                         'votos' => 1,
                         'created_at' => now(),
                         'updated_at' => now()
-                    ]);     */                                                       
+                    ]);                                                       
 
                 } else {
                     
                     // Si ya existe, aumentar el conteo de votos
 
-                    /**Forma Doctrine 3 **/
+                    /**Forma Doctrine 3 *
                     $votos = $extranjero->getVotos();                    
                     $extranjero->setVotos($votos+1);
                     $this->entityManager->flush();    
-                    
-                    /**Forma Eloquent **
+                    */
+                    /**Forma Eloquent ***/  
                     $extranjero->votos += 1;
-                    $extranjero->save();       */             
+                    $extranjero->save();                  
                       
                 }                              
                                               
                 
                 return back()->withErrors(['location' => 'Su ubicación debe estar dentro de Bolivia.']);
             }
+        }
+        else
+        {
+           return back()->withErrors(['location' => 'Es necesário que saber su ubicación aproximada para evitar fraudes por favor.']); 
         }
 
         // Verificar respuestas de seguridad
@@ -114,7 +121,7 @@ class RegisterController extends Controller
         ];      
         
         foreach ($preguntasRespondidas as $id => $respuesta) {
-            $pregunta = Pregunta::find($id);
+            $pregunta = pregunta::find($id);
             if (!$pregunta || $pregunta->respuesta !== $respuesta) {
                 return back()->withErrors(['pregunta_' . $id => 'Respuesta incorrecta']);
             }
@@ -142,7 +149,7 @@ class RegisterController extends Controller
         $this->entityManager->flush();
 
         //return response()->json(['message' => 'Registro exitoso'], 201);
-        return redirect()->route('login')->with('success', 'Usuario registrado con éxito. Ahora puede iniciar sesión.');
+        return redirect()->route('encuesta')->with('success', 'Usuario registrado con éxito. Ahora puede iniciar sesión.');
     }
 
     /**

@@ -1,13 +1,12 @@
 <?php
 namespace App\Http\Controllers;
-use App\Models\Pregunta;
-
 header('Content-Type: text/html; charset=UTF-8');
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use App\Models\pregunta;
 
 class AuthController extends Controller
 {
@@ -20,7 +19,7 @@ class AuthController extends Controller
     // Mostrar la vista de registro
     public function showRegister()
     {
-        $preguntas = Pregunta::inRandomOrder()->limit(3)->get();
+        $preguntas = pregunta::inRandomOrder()->limit(3)->get();
         //return view('auth.registro');
         return view('auth.registro', compact('preguntas'));
     }
