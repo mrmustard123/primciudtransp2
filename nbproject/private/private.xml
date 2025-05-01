@@ -6,11 +6,9 @@
             <file>file:/C:/2025/Leonardo/Documentos/applications_portfolio/primciudtransp/implementation/primciudtransp2/routes/web.php</file>
             <file>file:/C:/2025/Leonardo/Documentos/applications_portfolio/primciudtransp/implementation/primciudtransp2/resources/views/auth/login.blade.php</file>
             <file>file:/C:/2025/Leonardo/Documentos/applications_portfolio/primciudtransp/implementation/primciudtransp2/composer.json</file>
-            <file>file:/C:/2025/Leonardo/Documentos/applications_portfolio/primciudtransp/implementation/primciudtransp2/database/migrations/2025_05_01_033418_drop_unique_cedula_users_table.php</file>
             <file>file:/C:/2025/Leonardo/Documentos/applications_portfolio/primciudtransp/implementation/primciudtransp2/.env</file>
             <file>file:/C:/2025/Leonardo/Documentos/applications_portfolio/primciudtransp/implementation/primciudtransp2/resources/views/auth/login_celu.blade.php</file>
             <file>file:/C:/2025/Leonardo/Documentos/applications_portfolio/primciudtransp/implementation/primciudtransp2/app/Http/Controllers/AuthController.php</file>
-            <file>file:/C:/2025/Leonardo/Documentos/applications_portfolio/primciudtransp/implementation/primciudtransp2/database/migrations/2025_05_01_034011_make_cedula_name_password_nullable_in_users_table.php</file>
         </group>
     </open-files>
 </project-private>
