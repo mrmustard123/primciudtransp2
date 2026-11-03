@@ -37,7 +37,7 @@ El proyecto está desarrollado con **Laravel 9**, utilizando las siguientes depe
 1. Clonar el repositorio:
    ```bash
    git clone https://github.com/mrmustard123/primciudtransp2.git
-   cd nombre-repositorio
+   cd primciudtransp2
    ```
 2. Instalar dependencias:
    ```bash
